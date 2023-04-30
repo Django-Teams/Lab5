@@ -1,0 +1,19 @@
+{% extends 'lab5_app/common/base.html' %}
+{% load static %}
+
+{% block title %}
+Каталог
+{% endblock %}
+
+{% block content %}
+<h1 class="centered">Каталог</h1>
+<content class="card-list">
+    {% for id, dish in dishes %}
+        {% include "lab5_app/common/card_template.html" %}
+    {% endfor %}
+</content>
+{% endblock %}
+
+{% block custom_static %}
+<script type="text/javascript" src="{% static 'lab5_app/card.js' %}"></script>
+{% endblock %}

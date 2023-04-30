@@ -1,0 +1,39 @@
+{% comment %} 
+Для роботи цього темплейту очікується отримання наступного контексту:
+cards = [
+    {
+        "name": назва страви,
+        "desc": опис страви,
+        "img": зображення страви
+    },
+]
+
+Для використання цього темплейту використовуйте наступний код:
+{% for id in dishes_count %}
+    {% include "common/card_template.html" %}
+{% endfor %}
+
+Також, для коректної роботи переходу на сторінки карток,
+треба додати 2 наступні строки кодудо файлу, де вони будуть використовуватись
+!!! Скрипт має виконуватись перед іншими скриптами, що взаємодіють із картками !!!
+
+<script type="text/javascript" src='{% static "cw/card.js" %}'></script>
+{% endcomment %}
+
+<div class="card" id="{{ id }}">
+    <div class="img-box">
+        <img src="{{ dish.img }}" class="card-img-top" alt="{{ dish.name }}">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><b>{{ dish.name }}</b></h5>
+        <p class="card-text">{{ dish.desc }}</p>
+    </div>
+
+    {% comment %}     
+        Елемент, що робить картку *нібито* гіперсилкою
+        Джерело: https://stackoverflow.com/questions/796087/make-a-div-into-a-link
+    {% endcomment %}
+    <a class="link-provider">
+        <span class="link-spanner"></span>
+    </a>
+</div>

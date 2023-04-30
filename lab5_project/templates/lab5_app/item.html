@@ -1,0 +1,34 @@
+{% extends 'lab5_app/common/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ dish.name }}
+{% endblock %}
+
+{% block content %}
+<content id="item-page">
+    <h1 class="centered">{{ dish.name }}</h1>
+    <br>
+    <div class="centered">
+        <img id="item-img" src="{{ dish.img }}" alt="{{ dish.name }}">
+    </div>
+    <br>
+    <p class="item-desc">{{ dish.desc }}</p>
+    <hr class="mt-0 mr-4"></ht>
+    <form class="centered" action="/shop/item/add">
+        <h3>Замовити</h3>
+        <input type="hidden" id="add2cart-id" name="id" value="{{ dish_id }}">
+        <input type="number" name="amount" id="add2cart-amount" min="1" max="{{ max_dishes }}" placeholder="Кількість">
+        <b><p id="add2cart-cost">Ціна: 0</p></b>
+        <input type="submit" id="add2cart-submit" value="Замовити" disabled>
+    </form>
+</content>
+{% endblock %}
+
+{% block custom_static %}
+<script type="text/javascript">
+    const cost_per_dish = {{ cost_per_dish }}
+    const max_dishes = {{ max_dishes }}
+</script>
+<script type="text/javascript" src="{% static 'lab5_app/item.js' %}"></script>
+{% endblock %}

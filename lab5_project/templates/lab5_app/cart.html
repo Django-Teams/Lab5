@@ -1,0 +1,29 @@
+{% extends 'lab5_app/common/base.html' %}
+{% load static %}
+
+{% block title %}
+Мої замовлення
+{% endblock %}
+
+{% block content %}
+<content id="item-page">
+    {% csrf_token %}
+    <h1 class="centered">Мої замовлення</h1>
+    <hr class="mt-0 mr-4"></ht>
+    {% if total_cost != 0 %}
+        {% for id, order in curr_orders %}
+            <p><a id="{{ id }}" class="order-del" href="">[❌]</a><b>{{ order.0.name }}</b></p>
+            <p>Кількість: x{{ order.1 }}</p>
+            <p>Ціна: {{ order.2 }}</p>
+            <hr class="mt-0 mr-4"></ht>
+        {% endfor %}
+        <h3 class="centered">Загальна ціна: {{ total_cost }}</h3>
+    {% else %}
+        <h3 class="centered">Ви поки нічого не замовили</h3>
+    {% endif %}
+</content>
+{% endblock %}
+
+{% block custom_static %}
+<script type="text/javascript" src="{% static 'lab5_app/cart.js' %}"></script>
+{% endblock %}

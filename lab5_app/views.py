@@ -1,7 +1,6 @@
 import lab5_app.consts as consts
 import lab5_app.clearly_not_a_db as not_db
 
-import json
 from sys import maxsize
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
